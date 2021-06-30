@@ -24,11 +24,11 @@ int main (int argc, char *argv[]){
 	preencher(p, tam);
 	exibir(p,tam);
 	obterMenorValor(p, tam, &menor);
-  obterEnderecoMenorMaiorValor(p, tam, v);
+  	obterEnderecoMenorMaiorValor(p, tam, v);
 	puts("====");
 	printf("Menor valor - [%d]\n",menor);
-  puts("====");
-  printf("Menor valor [%p] - Maior valor [%p] \n", *v , *(v+1));
+  	puts("====");
+  	printf("Menor valor [%p] - Maior valor [%p] \n", *v , *(v+1));
 	free(p);
 
 	return 0;
