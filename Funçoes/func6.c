@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define MX 100
+#define MX 10
 
 //Protótipos e cabeçalho de funções
 void preencher(int *, int);
@@ -11,6 +11,7 @@ void mediana (int *, int);
 void moda (int *, int);
 
 int main(int argc,char* argv[]){
+	
 	//Entrada de Dados do Software
 	if (argc!=2){
 		printf("Formato: <Tamanho vetor>\n");
@@ -23,10 +24,18 @@ int main(int argc,char* argv[]){
 
 	//Processo
 	preencher(p, tam);
+	printf("\n");
 	exibir(p, tam);
-	media(p, tam+1);
+	printf("\n");
+
+	//Saída do software
+	media(p, tam);
+	printf("\n");
+	mediana(p, tam);
+	printf("\n");
+	moda(p, tam);
 	
-	
+	free(p);
 	return 0;
 }
 //Preenche os vetores com números pseudo-aleatórios.
@@ -48,22 +57,64 @@ void exibir(int *p, int t){
 
 //Realiza o cálculo da média no vetor.
 void media (int *p, int t){
-	int k, soma;
-	float mid;
+	int k, v[t], soma;
+	float mid=0;
 
 	for(k=0; k<t; k++){
-		soma=*p+*(p+k);
-		
+		soma += *(p+k);
+		mid = soma/t;
 	}
-	printf("Soma: %d\n", soma);
+	
+	printf("A MÉDIA ARITMÉTICA É: %.2f\n", mid);
 }
 //Realiza o cálculo da mediana no vetor.
 void mediana (int *p, int t){
+	
+	int i,k, res;
+	int v[t];
 
+//Ordena por seleção crescente os vetores alocados dinâmicamente 	
+
+	for(i=0; i<t-1; i++){
+  		for(k=i+1; k<t; k++){
+    		if(*(p+k)<*(p+i)){
+      		res=*(p+i);
+      		*(p+i)=*(p+k);
+      		*(p+k)=res;
+    		}
+  		}
+	}
+	
+	puts("ORDENAÇÃO DOS VETORES - MEDIANA");
+	printf("\n");
+	for(k=0; k<t; k++){
+ 	 	printf("%4d ", *(p+k));
+	}
+	printf("\n");
+	//Verificando paridade da mediana.
+		if(t%2==0){
+			v[t]=(*(p+k/2) + (*(p+k/2-1))) / 2;
+			printf("A mediana é: [%d] \n", v[t]);
+		} else if(t%2==1){
+			v[t]=(*(p+k/2));
+			printf("A mediana é: [%d] \n", v[t]);
+		}
 }
+	
+	
 //Realiza o cálculo da moda no vetor.
 void moda (int *p, int t){
+	
+	int k, v[t], frequencia[t];
 
+//Somatório da frequencia: conta quantas vezes cada número aparece, assim realizando o cálculo da moda.
+	for(k=0; k<t; k++){ 
+        frequencia[v[k]]+=frequencia[v[k]]; 
+  	}	
+	
+	puts("ACHANDO A FREQUÊNCIA DE OCORRÊNCIA \n");
+	printf("%s%20s\n","valor","frequência");
+	printf("A MODA É: [%d]\n", frequencia[v[k]]);	
 }
 
 //Escreva um programa em C que apresente a m ́edia, a mediana e a moda de um vetor de inteiros gerados aleatoriamente em tempo de execução
