@@ -113,8 +113,8 @@ void moda (int *p, int t){
   	}	
 	
 	puts("ACHANDO A FREQUÊNCIA DE OCORRÊNCIA \n");
-	printf("%s%20s\n","valor","frequência");
-	printf("A MODA É: [%d]\n", frequencia[v[k]]);	
+	for(k=0; k<MX; k++)
+	printf("A MODA É: [%d]\n", frequencia[k]);	
 }
 
 //Escreva um programa em C que apresente a m ́edia, a mediana e a moda de um vetor de inteiros gerados aleatoriamente em tempo de execução
