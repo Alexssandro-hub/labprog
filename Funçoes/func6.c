@@ -19,11 +19,11 @@ int main(int argc,char* argv[]){
 	}
 	
 	int tam, soma;
-	int *p=(int*) malloc(tam*sizeof(int));
+	int *p=(int*) calloc(tam, sizeof(int));
 	tam= atoi(argv[1]);
 
 	//Processo
-	preencher(p, tam);
+	preencher(p, tam); 
 	printf("\n");
 	exibir(p, tam);
 	printf("\n");
@@ -91,6 +91,7 @@ void mediana (int *p, int t){
  	 	printf("%4d ", *(p+k));
 	}
 	printf("\n");
+
 	//Verificando paridade da mediana.
 		if(t%2==0){
 			v[t]=(*(p+k/2) + (*(p+k/2-1))) / 2;
@@ -105,16 +106,26 @@ void mediana (int *p, int t){
 //Realiza o cálculo da moda no vetor.
 void moda (int *p, int t){
 	
-	int k, v[t], frequencia[t];
+	int k, j, moda, aux=0,  frequencia[t];
+
+	p=(int *) calloc(frequencia[t],sizeof(int)); 
 
 //Somatório da frequencia: conta quantas vezes cada número aparece, assim realizando o cálculo da moda.
 	for(k=0; k<t; k++){ 
-        frequencia[v[k]]+=frequencia[v[k]]; 
-  	}	
-	
+        for(j=k+1; j<t; j++){
+			
+			if(*(p+k)==*(p+j)){
+			++frequencia[*(p+k)];
+			
+			if(frequencia[*(p+k)]> aux){
+				aux = frequencia[*(p+k)];
+				moda = k;
+				}
+			}
+		}	 		  
+	}
 	puts("ACHANDO A FREQUÊNCIA DE OCORRÊNCIA \n");
-	for(k=0; k<MX; k++)
-	printf("A MODA É: [%d]\n", frequencia[k]);	
+	printf("A MODA É: [%d]\n", moda);	
 }
 
 //Escreva um programa em C que apresente a m ́edia, a mediana e a moda de um vetor de inteiros gerados aleatoriamente em tempo de execução
