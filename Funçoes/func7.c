@@ -14,8 +14,8 @@ void variancia(int* , int, int* );
 void desvioPadrao(int* , int, int*);
 
 int main(int argc, char* argv[]){
-	//Entrada de dados do software
 	
+	//Entrada de dados do software
 	if(argc!=2){
 		printf("Formato de execução: <TamanhoVetor>\t");
 		exit(1);
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
 	//Processamento
 	preencher(p, tam, &vA);
 	printf("\n");
-	
+
 	preencher(p, tam, &vB);
 	printf("\n");
 
@@ -72,7 +72,7 @@ void exibir(int* p, int t, int* v){
 	}
 }
 
-//Realiza o cálculo da média e em seguida realiza o desvio padrão.
+//Realiza o cálculo da média e em seguida realiza a taxa de desvio
 void desvio(int* p, int t, float* desvio){
 	int k, soma;
 	float mid=0, d;
