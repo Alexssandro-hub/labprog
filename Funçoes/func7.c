@@ -21,11 +21,10 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 
-	int tam, vA, vB, mid, var, desvioP;
+	int tam = atoi(argv[2]);
+	int vA, vB, mid, var, desvioP;
 	int *p=(int*) malloc(tam * sizeof(int));
 	float d;
-
-	tam = atoi(argv[2]);
 
 	//Processamento
 	preencher(p, tam, &vA);
