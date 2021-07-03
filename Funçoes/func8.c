@@ -47,7 +47,7 @@ void exibir(int* p, int t, int* M){
 //Binariza os vetores da Matriz S(i,j).
 void binarizar(int *p, int t, int* Mbinary){
 	
-	int k, i, j, Mbin[t][t];
+	int k, j, Mbin[t][t];
 	
 	//Binarizando elementos com 4-bits, usando "shift", para deslocar os bits com operadores aritméticos.
 	for (k = 0; k < t; k++) {
@@ -58,9 +58,9 @@ void binarizar(int *p, int t, int* Mbinary){
    }
 
    //Mostra os valores da matriz
-   for (i = 0; i < t; i++) {
+   for (k = 0; k < t; k++) {
     for (j = 0; j < 4; j++) {
-        printf("%d", Mbin[i][j]);
+        printf("%d", Mbin[k][j]);
      }
     puts("");
    }
