@@ -21,12 +21,12 @@ int main (int argc, char* argv[]){
 	int *p= (int* ) malloc (tam*sizeof(int));
 	int *q= (int* ) malloc (tam*sizeof(int));
 	int soma;
-	int square = tam*tam;
+	int dimensao = tam*tam;
 	//Processamento
-	preencher(p, square);
+	preencher(p, dimensao);
 	sleep(3);
 	
-	exibir( p, square);	
+	exibir( p, dimensao);	
 	printf("\n");
 	
 	somatorio(p, tam, &soma);
