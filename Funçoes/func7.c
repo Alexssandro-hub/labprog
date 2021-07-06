@@ -10,9 +10,6 @@
 //Cabeçalho de protótipos de funções
 void preencher(int* p, int t);
 void exibir(int* , int);
-void desvio(int* p, int t, float*);
-void variancia(int* , int, int* );
-void desvioPadrao(int* , int, int*);
 void mse(int *, int *, int, float *);
 
 int main(int argc, char* argv[]){
@@ -48,6 +45,8 @@ int main(int argc, char* argv[]){
 	//Saída do Software
 	printf("Resultado: %.2f\n",respMSE);
 
+	free(pA);
+	free(pB);
 	return 0;
 }
 //Preenche os vetores A e B
@@ -59,6 +58,16 @@ void preencher(int* p, int t){
 		*(p+k)=rand()%MX;
 	}
 }
+
+//Exibe os vetores A e B criados
+void exibir(int* p, int t){
+	int k;
+	printf("Vetor gerado randômicamente:\n");
+	for(k=0; k<t; k++){
+		printf("\t[%d]\n", *(p+k));
+	}
+}
+
 //Calcula o Erro Médio Quadrático (Mean Square Error).
 void mse(int *p, int *q, int t, float *r){
 	int s = 0;
@@ -72,13 +81,3 @@ void mse(int *p, int *q, int t, float *r){
 	*r = (float) s / (float) t;
 
 }
-
-//Exibe os vetores A e B criados
-void exibir(int* p, int t){
-	int k;
-	printf("Vetor gerado randômicamente:\n");
-	for(k=0; k<t; k++){
-		printf("\t[%d]\n", *(p+k));
-	}
-}
-
