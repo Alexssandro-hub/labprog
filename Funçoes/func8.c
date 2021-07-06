@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 	
-	int tam = atoi (argv[2]);
+	int tam = atoi (argv[1]);
 	int *p = (int*) malloc( tam * sizeof(int));
 	int Mbin[tam][tam];
 

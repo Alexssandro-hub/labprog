@@ -4,14 +4,16 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <unistd.h>
 #define MX 10
 
 //Cabeçalho de protótipos de funções
-void preencher(int*, int, int*);
-void exibir(int* , int, int*);
+void preencher(int* p, int t);
+void exibir(int* , int);
 void desvio(int* p, int t, float*);
 void variancia(int* , int, int* );
 void desvioPadrao(int* , int, int*);
+void mse(int *, int *, int, float *);
 
 int main(int argc, char* argv[]){
 	
@@ -21,40 +23,35 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 
-	int tam = atoi(argv[2]);
-	int vA, vB, mid, var, desvioP;
-	int *p=(int*) malloc(tam * sizeof(int));
-	float d;
+	int tam = atoi(argv[1]);
+	int mid, var, desvioP;
+	int *pA=(int*) malloc(tam * sizeof(int));
+	int *pB=(int*) malloc(tam * sizeof(int));
+	float respMSE;
 
-	//Processamento
-	preencher(p, tam, &vA);
-	printf("\n");
-
-	preencher(p, tam, &vB);
-	printf("\n");
-
+	// Geracao dos dados	
+	preencher(pA, tam);
+	sleep(5);
+	preencher(pB, tam);
+	
 	puts("Vetores gerados de A \n");
-	exibir(p, tam, &vA);
+	exibir(pA, tam);
 	printf("\n");
 
 	puts("Vetores gerados de B \n");
-	exibir(p, tam, &vB);
+	exibir(pB, tam);
 	printf("\n");
+
+	// Processamento
+	mse(pA, pB, tam, &respMSE);
 
 	//Saída do Software
-	desvio(p, tam, &d);
-	printf("\n");
-
-	variancia(p, tam, &var);
-	printf("\n");
-
-	desvioPadrao(p, tam, &desvioP);
-	printf("\n");
+	printf("Resultado: %.2f\n",respMSE);
 
 	return 0;
 }
 //Preenche os vetores A e B
-void preencher(int* p, int t, int* v){
+void preencher(int* p, int t){
 	int k;
 	srand(time(NULL));
 
@@ -62,48 +59,26 @@ void preencher(int* p, int t, int* v){
 		*(p+k)=rand()%MX;
 	}
 }
+//Calcula o Erro Médio Quadrático (Mean Square Error).
+void mse(int *p, int *q, int t, float *r){
+	int s = 0;
+	int k, d;
+	 
+	for (k=0; k<t; k++){
+		d = *(p+k) - *(q+k);
+		s += pow(d,2); //  s = s + pow(d,2);
+	}
+
+	*r = (float) s / (float) t;
+
+}
+
 //Exibe os vetores A e B criados
-void exibir(int* p, int t, int* v){
+void exibir(int* p, int t){
 	int k;
-	
+	printf("Vetor gerado randômicamente:\n");
 	for(k=0; k<t; k++){
-		printf("Vetor gerado randômicamente: [%d]\n", *(p+k));
+		printf("\t[%d]\n", *(p+k));
 	}
 }
 
-//Realiza o cálculo da média e em seguida realiza a taxa de desvio
-void desvio(int* p, int t, float* desvio){
-	int k, soma;
-	float mid=0, d;
-
-	for(k=0; k<t; k++){
-		soma += *(p+k);
-		mid = soma/t;
-	}
-	
-	printf("A MÉDIA ARITMÉTICA É: [%.2f]\n", mid);
-
-	for(k=0; k<t; k++){
-		d = *(p+k) - mid;
-	}
-	printf("Resultado do Desvio(VETOR - MÉDIA): [%.2f]\n", d);
-}
-
-//Realiza o somatório da variância
-void variancia(int* p, int t, int* var){
-	int k, result;
-	float mid;
-
-	for(k=0; k<t; k++){
-		result += pow(*(p+k) - mid, 2);
-	} 
-	printf("Resultado da Variância: [%d]\n", result);
-}
-
-//Realiza o desvio padrão
-void desvioPadrao(int* p, int t, int* dp){
-	int desvio, var;
-	
-	desvio = sqrt(var);
-	printf("O Resultado do Erro médio quadrático é: [%d]\n", desvio);
-}
