@@ -17,10 +17,10 @@ int main() {
     } else if (*p < menor && *p!=0){
       menor = *p;
       printf("FIM DO PROGRAMA!");
+
+    printf("O menor valor %d", *p);
     }
   }
 
   return 0;
 }
- 
-  

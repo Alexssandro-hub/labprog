@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 
-	int tam = atoi(argv[1]);
+	int tam= atoi(argv[1]);
 	int mid, var, desvioP;
 	int *pA=(int*) malloc(tam * sizeof(int));
 	int *pB=(int*) malloc(tam * sizeof(int));

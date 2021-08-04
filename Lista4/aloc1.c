@@ -4,7 +4,7 @@
 #define MN 82
 #define MX 237
 int main() {
-
+  
   int *p=NULL, k, soma, qtd;
   //Entrada de dados
   puts("Por favor, digite a quantidade de elementos que deseja alocar na memória: ");
@@ -23,7 +23,7 @@ int main() {
 
   for(k=0; k<qtd; k++){
     if(*(p+k)>MN && *(p+k)<MX){
-    soma= *(p+k) + *(p+k+1);
+    soma = *(p+k)+*(p+k+1);
     printf("Soma: [%d]\n", soma++);
     }
   }
