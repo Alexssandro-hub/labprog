@@ -79,5 +79,4 @@ void mse(int *p, int *q, int t, float *r){
 	}
 
 	*r = (float) s / (float) t;
-
 }
