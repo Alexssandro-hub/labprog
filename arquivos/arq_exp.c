@@ -8,7 +8,7 @@ int main (){
 
 	char str[80];
 
-	if((fp = fopen("TEST", "w") == NULL)){
+	if(!(fp = fopen("TEST", "w"))){
 		printf("O arquivo não pode ser iniciado\n");
 		exit(1);
 	}
